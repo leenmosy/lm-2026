@@ -161,17 +161,15 @@ export default function HomePage() {
       <hr className="border-stone-200/60 mb-16 md:mb-20" />
 
       <section className="mb-0">
-        <div className="flex items-center justify-between mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-sm text-stone-700 uppercase tracking-[0.15em] mb-8 font-medium"
-          >
-            Популярное
-          </motion.p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-sm text-stone-700 uppercase tracking-[0.15em] mb-8 font-medium"
+        >
+          Популярное
+        </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {getPopularArticles().slice(0, 6).map((article, index) => (
             <motion.div
