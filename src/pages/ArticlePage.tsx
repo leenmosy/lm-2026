@@ -168,8 +168,8 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           {article.intro.split('\n\n').map((paragraph, i) => (
             <motion.p
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-stone-900 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
