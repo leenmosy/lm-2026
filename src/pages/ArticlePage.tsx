@@ -142,7 +142,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {views !== null && (
               <>
                 <span className="text-stone-600">·</span>
-                <span className="text-xs text-stone-600">👁 {views}</span>
+                <span className="text-xs text-stone-600">{views} 👁</span>
               </>
             )}
           </div>
