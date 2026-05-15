@@ -77,7 +77,7 @@ const articles: Article[] = [
     },
     {
       id: 4,
-      title: 'Стильный Диффузор',
+      title: 'Стильный диффузор',
       description: 'Диффузор для дома создаёт стабильный фоновый аромат, который формирует ощущение чистоты и завершённости пространства.',
       image: '/images/5-veshchey-kotorye-delayut-spalnyu-vizualno-dorozhe/product-04.webp',
       price: 'от 300 ₽',
