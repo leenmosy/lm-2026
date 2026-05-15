@@ -72,7 +72,7 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
 
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-stone-400 text-lg font-mono font-medium">
+            <span className="text-stone-900 text-lg font-mono font-medium">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div className="h-px flex-1 bg-stone-200" />
@@ -85,15 +85,15 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
             {product.title}
           </h3>
 
-          <p className="text-stone-500 text-base leading-relaxed mb-6">
+          <p className="text-stone-900 text-base leading-relaxed mb-6">
             {product.description}
           </p>
 
           <div className="border-l-2 border-stone-300 pl-5 mb-6">
-            <p className="text-xs text-stone-600 uppercase tracking-wider mb-2 font-medium">
+            <p className="text-xs text-stone-900 uppercase tracking-wider mb-2 font-medium">
               ✦ Почему это меняет пространство
             </p>
-            <p className="text-stone-600 text-sm leading-relaxed">
+            <p className="text-stone-900 text-sm leading-relaxed">
               {product.why}
             </p>
           </div>
