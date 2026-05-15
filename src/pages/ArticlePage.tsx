@@ -161,12 +161,12 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         </div>
 
 
-        <motion.div
+         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="relative overflow-hidden bg-stone-900 rounded-sm px-8 md:px-12 py-10 md:py-14 mt-12 md:mt-16"
+          className="relative overflow-hidden bg-stone-900 rounded-sm px-8 md:px-12 py-10 md:py-14 mt-16 md:mt-20"
         >
           <div className="absolute -right-0 -bottom-0 w-80 md:w-[420px] opacity-[1] pointer-events-none select-none">
             <svg width="415" height="355" viewBox="0 0 415 325" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -186,24 +186,14 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </div>
 
           <div className="relative z-10">
-            <p className="text-sm text-stone-600 uppercase tracking-[0.15em] font-medium mb-8">
-              ✦ Итог
+            <h2 className="font-serif text-2xl md:text-3xl text-stone-100 mb-4 leading-snug">
+              Итог
+            </h2>
+            <p className="text-stone-400 text-base leading-relaxed max-w-lg mb-8">
+              Дорогая спальня - это редко про стоимость мебели. Обычно все решает ощущение уюта, порядка и того, что пространство выглядит продуманным. Иногда достаточно просто поменять текстиль и освещение, чтобы спальня воспринималась совсем по-другому.
             </p>
-            <div className="max-w-2xl relative z-10">
-              ...
-            </div>
           </div>
-          <div className="max-w-2xl relative z-10">
-            {article.conclusion.split('\n\n').map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-stone-300 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </motion.div>
+        </motion.div>   
 
         {related.length > 0 && (
           <motion.div

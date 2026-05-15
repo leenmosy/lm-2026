@@ -233,9 +233,6 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10">
-            <p className="text-sm text-stone-600 uppercase tracking-[0.15em] font-medium mb-6">
-              ✦ Статьи
-            </p>
             <h2 className="font-serif text-2xl md:text-3xl text-stone-100 mb-4 leading-snug">
               Все материалы журнала
             </h2>
