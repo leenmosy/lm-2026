@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -6,12 +6,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const BASE_URL = 'https://mosych.top';
 
-const src = readFileSync(resolve(ROOT, 'src/lib/articles.ts'), 'utf-8');
+const contentDir = resolve(ROOT, 'src/content');
+const jsonFiles = readdirSync(contentDir).filter(f => f.endsWith('.json'));
 
-const slugs = [...src.matchAll(/slug:\s*['"`]([^'"`]+)['"`]/g)].map(m => m[1]);
-const dates = [...src.matchAll(/date:\s*['"`](\d{4}-\d{2}-\d{2})['"`]/g)].map(m => m[1]);
-
-const articles = slugs.map((slug, i) => ({ slug, date: dates[i] ?? '' }));
+const articles = jsonFiles.map(f => {
+  const data = JSON.parse(readFileSync(resolve(contentDir, f), 'utf-8'));
+  return { slug: data.slug, date: data.date };
+});
 
 function urlEntry({ path, lastmod, priority = '0.9', changefreq = 'monthly' }) {
   return [

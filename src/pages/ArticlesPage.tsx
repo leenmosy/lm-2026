@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { navigate } from '../App';
-import { getArticlesSortedByDate, formatDateShort } from '../lib/articles';
+import { getArticlesSortedByDate } from '../lib/articles';
 
 export default function ArticlesPage() {
   const articles = getArticlesSortedByDate();

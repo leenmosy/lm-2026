@@ -29,10 +29,7 @@ export default function HomePage() {
     fetchViews();
   }, [featured?.slug]);
 
-  const stats = [
-    { number: articles.length, label: 'Статьи' },
-    { number: new Set(articles.map(a => a.category)).size, label: 'Категории' },
-  ];
+
 
   return (
     <div className="pb-4">
