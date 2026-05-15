@@ -54,7 +54,6 @@ img {
   user-select: none;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -72,15 +71,9 @@ img {
   background-color: #a8a29e;
 }
 
-/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: #d6d3d1 transparent;
-}
-
-@keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 body::after {

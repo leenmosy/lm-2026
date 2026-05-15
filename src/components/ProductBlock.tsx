@@ -42,7 +42,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
           isEven ? 'md:flex-row' : 'md:flex-row-reverse'
         } gap-8 md:gap-14 items-start`}
       >
-        {/* Product Image */}
         <div className="w-full md:w-1/2 flex-shrink-0">
           <div 
             className="aspect-[4/3] rounded-sm overflow-hidden bg-stone-100"
@@ -71,7 +70,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
           </div>
         </div>
 
-        {/* Product Info */}
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-stone-400 text-lg font-mono font-medium">
@@ -91,7 +89,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
             {product.description}
           </p>
 
-          {/* Why section */}
           <div className="border-l-2 border-stone-300 pl-5 mb-6">
             <p className="text-xs text-stone-600 uppercase tracking-wider mb-2 font-medium">
               ✦ Почему это меняет пространство
@@ -130,7 +127,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
         </div>
       </div>
 
-      {/* Divider */}
       {!isLast && (
         <div className="mt-12 md:mt-16 h-px bg-stone-100 w-full" />
       )}

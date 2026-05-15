@@ -16,11 +16,9 @@ export default function HomePage() {
 
   return (
     <div className="pb-4">
-      {/* Hero Section */}
       <section className="pt-8 md:pt-28 pb-6 md:pb-24">
         <div className="flex flex-col items-center text-center">
 
-        {/* Mosych Journal SVG */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -80,7 +78,6 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* Featured Article */}
       {featured && (
         <section className="mt-16 md:mt-20 mb-16 md:mb-20" id="featured-section" > 
           <motion.p
@@ -101,7 +98,6 @@ export default function HomePage() {
             className="group cursor-pointer"
             onClick={() => navigate(`/articles/${featured.slug}`)}
           >
-            {/* Image */}
             <div
               className="relative overflow-hidden rounded-sm bg-stone-100 aspect-[16/9] md:aspect-[16/7]"
               onMouseEnter={() => setHovered(true)}
@@ -132,7 +128,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Info */}
             <div className="mt-6 md:mt-8 max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-stone-300 text-xs">
@@ -165,7 +160,6 @@ export default function HomePage() {
 
       <hr className="border-stone-200/60 mb-16 md:mb-20" />
 
-      {/* Popular Articles */}
       <section className="mb-0">
         <div className="flex items-center justify-between mb-8">
           <motion.p

@@ -7,7 +7,6 @@ import ArticlesPage from './pages/ArticlesPage';
 import ArticlePage from './pages/ArticlePage';
 import { getArticleBySlug } from './lib/articles';
 
-// Track whether user navigated internally so back() is safe
 let _navigatedInternally = false;
 
 function useRouter() {
@@ -19,8 +18,6 @@ function useRouter() {
 
   useEffect(() => {
     const handlePopState = () => {
-      // Reset flag on browser back/forward so goBack() falls through to '/'
-      // when there's no more internal history to go back to
       _navigatedInternally = window.history.state?._internal === true;
       setPath(window.location.pathname);
       window.scrollTo({ top: 0 });
@@ -50,7 +47,6 @@ export function goBack() {
   }
 }
 
-// Fix 5: Update OG/Twitter meta tags dynamically
 export function updatePageMeta(opts: {
   title?: string;
   description?: string;
