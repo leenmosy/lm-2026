@@ -23,22 +23,34 @@ export default function ArticlePage({ article }: ArticlePageProps) {
     const sessionKey = `viewed_${article.slug}`;
 
     const fetchViews = async () => {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('article_views')
         .select('views')
         .eq('slug', article.slug)
         .single();
+      if (error) {
+        console.error('Supabase fetchViews:', error.message);
+        return;
+      }
       if (data) setViews(data.views);
     };
 
     const incrementAndFetch = async () => {
-      await supabase.rpc('increment_views', { article_slug: article.slug });
+      const { error: rpcError } = await supabase.rpc('increment_views', { article_slug: article.slug });
+      if (rpcError) {
+        console.error('Supabase increment_views:', rpcError.message);
+        return;
+      }
       sessionStorage.setItem(sessionKey, '1');
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('article_views')
         .select('views')
         .eq('slug', article.slug)
         .single();
+      if (error) {
+        console.error('Supabase fetchViews after increment:', error.message);
+        return;
+      }
       if (data) setViews(data.views);
     };
 

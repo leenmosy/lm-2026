@@ -58,6 +58,8 @@ export function updatePageMeta(opts: {
   const description = opts.description ?? 'Эстетичные идеи для дома. Вдохновение и стильные решения для интерьера без ремонта.';
   const url = opts.url ? `${base}${opts.url}` : `${base}/`;
   const image = opts.image ? `${base}${opts.image}` : `${base}/images/cover-bathroom.jpg`;
+  const hreflang = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="ru"]');
+    if (hreflang) hreflang.href = url;
 
   document.title = title;
   setMeta('name', 'description', description);
@@ -142,6 +144,7 @@ function App() {
       title: 'Статьи - Mosych Journal',
       description: 'Кураторский список статей о доме, интерьере и вещах, которые меняют пространство.',
       url: '/articles',
+      image: '/images/MosychJournal.webp'
     });
     content = (
       <PageTransition pageKey="articles">

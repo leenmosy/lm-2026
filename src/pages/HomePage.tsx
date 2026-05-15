@@ -15,11 +15,15 @@ export default function HomePage() {
   useEffect(() => {
     if (!featured) return;
     const fetchViews = async () => {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('article_views')
         .select('views')
         .eq('slug', featured.slug)
         .single();
+      if (error) {
+        console.error('Supabase fetchViews (featured):', error.message);
+        return;
+      }
       if (data) setFeaturedViews(data.views);
     };
     fetchViews();
