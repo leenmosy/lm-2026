@@ -18,7 +18,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
       if (!articleRef.current) return;
       const el = articleRef.current;
       const top = el.getBoundingClientRect().top + window.scrollY;
-      // Fix 9: guard against short content (height <= 0)
       const height = el.offsetHeight - window.innerHeight;
       if (height <= 0) {
         setProgress(1);
@@ -36,7 +35,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
 
   return (
     <div className="pb-16 md:pb-24">
-      {/* Полоска прогресса — фиксируется слева */}
       <div className="fixed left-[max(12px,calc(50vw-750px))] top-1/4 h-1/2 w-0.5 bg-stone-200 z-50 hidden xl:block">
         <div
           className="w-full bg-stone-400 transition-none origin-top"
@@ -45,14 +43,12 @@ export default function ArticlePage({ article }: ArticlePageProps) {
       </div>
 
       <div ref={articleRef}>
-        {/* Back button */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0 }}
           className="pt-8 md:pt-10"
         >
-          {/* Fix 6: use goBack() instead of history.length check */}
           <button
             onClick={goBack}
             className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-stone-700 transition-colors duration-300 cursor-pointer group"
@@ -64,7 +60,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </button>
         </motion.div>
 
-        {/* Hero Image */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -89,7 +84,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </div>
         </motion.div>
 
-        {/* Article Header */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -119,10 +113,8 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </p>
         </motion.div>
 
-        {/* Divider */}
         <div className="h-px bg-stone-200/60 mt-10 md:mt-14 mb-8 md:mb-10" />
 
-        {/* Intro */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -140,7 +132,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           ))}
         </motion.div>
 
-        {/* Section Label */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -153,7 +144,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </p>
         </motion.div>
 
-        {/* Products */}
         <div>
           {article.products.map((product, index) => (
             <ProductBlock
@@ -165,10 +155,8 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           ))}
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-stone-200/60 mt-8 md:mt-12 mb-10 md:mb-14" />
 
-        {/* Conclusion */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -213,7 +201,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </div>
         </motion.div>
 
-        {/* Back CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
