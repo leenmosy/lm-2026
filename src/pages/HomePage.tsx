@@ -266,7 +266,7 @@ export default function HomePage() {
               Все материалы журнала
             </h2>
             <p className="text-stone-400 text-base leading-relaxed max-w-lg mb-8">
-              Подборки вещей для дома, идеи для уютного интерьера и те самые детали, из-за которых пространство начинает ощущаться совсем по-другому - теплее, спокойнее и визуально дороже..
+              Подборки вещей для дома, идеи для уютного интерьера и те самые детали, из-за которых пространство начинает ощущаться совсем по-другому.
             </p>
             <div className="inline-flex items-center gap-2 text-sm text-stone-400 font-medium group-hover:text-stone-100 transition-colors duration-300">
               Читать все статьи
