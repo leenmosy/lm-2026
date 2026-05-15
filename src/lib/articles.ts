@@ -34,7 +34,7 @@ const articles: Article[] = [
   title: '5 вещей, которые делают спальню визуально дороже',
   description: 'Без ремонта - только детали, которые делают интерьер более дорогим, спокойным и уютным на вид.',
   coverImage: '/images/5-veshchey-kotorye-delayut-spalnyu-vizualno-dorozhe/cover.jpg',
-  date: '2026-03-05',
+  date: '2026-05-15',
   tags: ['спальня', 'уют', 'декор', 'без ремонта'],
   category: 'Спальня',
   featured: true,
