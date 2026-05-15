@@ -143,7 +143,7 @@ export default function HomePage() {
                 {featured.title}
               </h2>
 
-              <p className="text-stone-400 text-base mt-3 leading-relaxed">
+              <p className="text-stone-900 text-base mt-3 leading-relaxed">
                 {featured.description}
               </p>
 
