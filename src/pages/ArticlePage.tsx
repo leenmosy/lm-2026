@@ -189,7 +189,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             <h2 className="font-serif text-2xl md:text-3xl text-stone-100 mb-4 leading-snug">
               Итог
             </h2>
-            <p className="text-stone-400 text-base leading-relaxed max-w-lg mb-8">
+            <p className="text-stone-400 text-base leading-relaxed max-w-lg">
               Дорогая спальня - это редко про стоимость мебели. Обычно все решает ощущение уюта, порядка и того, что пространство выглядит продуманным. Иногда достаточно просто поменять текстиль и освещение, чтобы спальня воспринималась совсем по-другому.
             </p>
           </div>
