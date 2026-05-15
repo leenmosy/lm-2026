@@ -16,7 +16,7 @@ export default function ArticlesPage() {
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-stone-900">
             Все статьи
           </h1>
-          <p className="mt-5 text-stone-400 text-base md:text-lg leading-relaxed max-w-md">
+          <p className="mt-5 text-stone-900 text-base md:text-lg leading-relaxed max-w-md">
             Авторская подборка материалов об интерьере и вещах, которые влияют на атмосферу и комфорт.
             Идеи, которые способны сделать интерьер визуально дороже и уютнее.
           </p>
@@ -53,7 +53,7 @@ export default function ArticlesPage() {
                   <h2 className="font-serif text-xl md:text-2xl lg:text-[1.75rem] text-stone-900 leading-snug group-hover:text-stone-500 transition-colors duration-500">
                     {article.title}
                   </h2>
-                  <p className="text-stone-400 text-sm mt-1.5 md:mt-2 leading-relaxed">
+                  <p className="text-stone-900 text-sm mt-1.5 md:mt-2 leading-relaxed">
                     {article.description}
                   </p>
                 </div>
