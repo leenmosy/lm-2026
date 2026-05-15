@@ -4,14 +4,19 @@ import ProductBlock from '../components/ProductBlock';
 import { navigate, goBack } from '../App';
 import type { Article } from '../lib/articles';
 import { formatDate } from '../lib/articles';
+import { getAllArticles } from '../lib/articles';
 
 interface ArticlePageProps {
   article: Article;
 }
 
 export default function ArticlePage({ article }: ArticlePageProps) {
+  const related = getAllArticles()
+    .filter(a => a.slug !== article.slug)
+    .slice(0, 3);
   const [progress, setProgress] = useState(0);
   const articleRef = useRef<HTMLDivElement>(null);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,8 +39,8 @@ export default function ArticlePage({ article }: ArticlePageProps) {
   }, []);
 
   return (
-    <div className="pb-16 md:pb-24">
-      <div className="fixed left-[max(12px,calc(50vw-750px))] top-1/4 h-1/2 w-0.5 bg-stone-200 z-50 hidden xl:block">
+    <div className="pb-4">
+      <div className="fixed left-[max(12px,calc(50vw-750px))] top-1/3 h-1/3 w-0.5 bg-stone-200 z-50 hidden xl:block">
         <div
           className="w-full bg-stone-600 transition-none origin-top"
           style={{ height: `${progress * 100}%` }}
@@ -155,14 +160,13 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           ))}
         </div>
 
-        <div className="h-px bg-stone-300/60 mt-8 md:mt-12 mb-10 md:mb-14" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="relative overflow-hidden bg-stone-900 rounded-sm px-8 md:px-12 py-10 md:py-14"
+          className="relative overflow-hidden bg-stone-900 rounded-sm px-8 md:px-12 py-10 md:py-14 mt-12 md:mt-16"
         >
           <div className="absolute -right-0 -bottom-0 w-80 md:w-[420px] opacity-[1] pointer-events-none select-none">
             <svg width="415" height="355" viewBox="0 0 415 325" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,7 +197,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {article.conclusion.split('\n\n').map((paragraph, i) => (
               <p
                 key={i}
-                className="text-stone-200 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
+                className="text-stone-300 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
               >
                 {paragraph}
               </p>
@@ -201,23 +205,46 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-stone-100"
-        >
-          <button
-            onClick={() => navigate('/articles')}
-            className="inline-flex items-center gap-3 text-sm font-medium tracking-wide text-stone-600 hover:text-stone-900 transition-colors duration-300 cursor-pointer group"
+        {related.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mt-16 md:mt-20 pt-10 md:pt-12"
           >
-            <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
-              ←
-            </span>
-            Вернуться к статьям
-          </button>
-        </motion.div>
+            <p className="text-sm text-stone-700 uppercase tracking-[0.15em] font-medium mb-8">
+              Читать также
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {related.map((a) => (
+                <div
+                  key={a.slug}
+                  className="group cursor-pointer"
+                  onClick={() => navigate(`/articles/${a.slug}`)}
+                >
+                  <div className="aspect-[4/3] rounded-sm overflow-hidden bg-stone-100 mb-4">
+                    <picture>
+                      <source srcSet={a.coverImage.replace(/\.jpg$/, '.webp')} type="image/webp" />
+                      <img
+                        src={a.coverImage}
+                        alt={a.title}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                        loading="lazy"
+                      />
+                    </picture>
+                  </div>
+                  <span className="text-xs text-stone-500 uppercase tracking-wider font-medium">
+                    {a.category}
+                  </span>
+                  <h3 className="font-serif text-lg md:text-xl text-stone-900 leading-snug mt-1 group-hover:text-stone-500 transition-colors duration-300">
+                    {a.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

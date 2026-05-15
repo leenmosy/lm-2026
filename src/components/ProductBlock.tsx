@@ -72,11 +72,11 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
 
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-stone-600 text-lg font-mono font-medium">
+            <span className="text-stone-500 text-lg font-mono font-medium">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div className="h-px flex-1 bg-stone-300" />
-            <span className="text-stone-600 text-lg font-semibold">
+            <span className="text-stone-500 text-lg font-semibold">
               {product.price}
             </span>
           </div>
@@ -127,9 +127,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
         </div>
       </div>
 
-      {!isLast && (
-        <div className="mt-12 md:mt-16 h-px bg-stone-100 w-full" />
-      )}
     </motion.div>
   );
 }
