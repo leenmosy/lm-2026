@@ -5,6 +5,7 @@ import { navigate, goBack } from '../App';
 import type { Article } from '../lib/articles';
 import { formatDate } from '../lib/articles';
 import { getAllArticles } from '../lib/articles';
+import { supabase } from '../lib/supabase';
 
 interface ArticlePageProps {
   article: Article;
@@ -15,7 +16,21 @@ export default function ArticlePage({ article }: ArticlePageProps) {
     .filter(a => a.slug !== article.slug)
     .slice(0, 3);
   const [progress, setProgress] = useState(0);
+  const [views, setViews] = useState<number | null>(null);
   const articleRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const incrementAndFetch = async () => {
+      await supabase.rpc('increment_views', { article_slug: article.slug });
+      const { data } = await supabase
+        .from('article_views')
+        .select('views')
+        .eq('slug', article.slug)
+        .single();
+      if (data) setViews(data.views);
+    };
+    incrementAndFetch();
+  }, [article.slug]);
   
 
   useEffect(() => {
@@ -107,6 +122,12 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             <span className="text-xs text-stone-600">
               {formatDate(article.date)}
             </span>
+            {views !== null && (
+              <>
+                <span className="text-stone-600">·</span>
+                <span className="text-xs text-stone-600">{views} просмотров</span>
+              </>
+            )}
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.15] tracking-tight text-stone-900">
