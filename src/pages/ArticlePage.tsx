@@ -164,22 +164,20 @@ export default function ArticlePage({ article }: ArticlePageProps) {
 
         <div className="h-px bg-stone-300/60 mt-10 md:mt-14 mb-8 md:mb-10" />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-2xl mb-12 md:mb-16"
-        >
+        <div className="max-w-2xl mb-12 md:mb-16">
           {article.intro.split('\n\n').map((paragraph, i) => (
-            <p
+            <motion.p
               key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-stone-900 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
             >
               {paragraph}
-            </p>
+            </motion.p>
           ))}
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
 import { navigate } from '../App';
 import { getAllArticles, getFeaturedArticle, formatDate, getPopularArticles } from '../lib/articles';
@@ -8,6 +9,21 @@ export default function HomePage() {
   const articles = getAllArticles();
   const featured = getFeaturedArticle() ?? articles[0];
   const [hovered, setHovered] = useState(false);
+
+  const [featuredViews, setFeaturedViews] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!featured) return;
+    const fetchViews = async () => {
+      const { data } = await supabase
+        .from('article_views')
+        .select('views')
+        .eq('slug', featured.slug)
+        .single();
+      if (data) setFeaturedViews(data.views);
+    };
+    fetchViews();
+  }, [featured?.slug]);
 
   const stats = [
     { number: articles.length, label: 'Статьи' },
@@ -140,6 +156,18 @@ export default function HomePage() {
                 <span className="text-stone-600 text-xs">
                   {featured.readingTime} мин. чтения
                 </span>
+                {featuredViews !== null && (
+                  <>
+                    <span className="text-stone-600">·</span>
+                    <span className="text-stone-600 text-xs flex items-center gap-1">
+                      {featuredViews}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </span>
+                  </>
+                )}
               </div>
 
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl leading-snug text-stone-900 group-hover:text-stone-900 transition-colors duration-500">
