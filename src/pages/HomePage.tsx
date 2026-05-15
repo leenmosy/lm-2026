@@ -130,16 +130,16 @@ export default function HomePage() {
 
             <div className="mt-6 md:mt-8 max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-stone-300 text-xs">
+                <span className="text-stone-600 text-xs">
                   {formatDate(featured.date)}
                 </span>
-                <span className="text-stone-200">·</span>
-                <span className="text-stone-300 text-xs">
+                <span className="text-stone-600">·</span>
+                <span className="text-stone-600 text-xs">
                   {featured.readingTime} мин. чтения
                 </span>
               </div>
 
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl leading-snug text-stone-900 group-hover:text-stone-600 transition-colors duration-500">
+              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl leading-snug text-stone-900 group-hover:text-stone-900 transition-colors duration-500">
                 {featured.title}
               </h2>
 
