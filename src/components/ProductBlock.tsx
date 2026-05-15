@@ -72,7 +72,7 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
 
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-stone-900 text-lg font-mono font-medium">
+            <span className="text-stone-400 text-lg font-mono font-medium">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div className="h-px flex-1 bg-stone-200" />

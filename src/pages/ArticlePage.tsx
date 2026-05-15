@@ -108,7 +108,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {article.title}
           </h1>
 
-          <p className="mt-3 text-stone-400 text-base">
+          <p className="mt-3 text-stone-600 text-base">
             {article.description}
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           {article.intro.split('\n\n').map((paragraph, i) => (
             <p
               key={i}
-              className="text-stone-600 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
+              className="text-stone-900 text-base md:text-lg leading-relaxed mb-5 last:mb-0"
             >
               {paragraph}
             </p>
