@@ -20,8 +20,9 @@ export default function ArticlePage({ article }: ArticlePageProps) {
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const incrementAndFetch = async () => {
-      await supabase.rpc('increment_views', { article_slug: article.slug });
+    const sessionKey = `viewed_${article.slug}`;
+
+    const fetchViews = async () => {
       const { data } = await supabase
         .from('article_views')
         .select('views')
@@ -29,7 +30,23 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         .single();
       if (data) setViews(data.views);
     };
-    incrementAndFetch();
+
+    const incrementAndFetch = async () => {
+      await supabase.rpc('increment_views', { article_slug: article.slug });
+      sessionStorage.setItem(sessionKey, '1');
+      const { data } = await supabase
+        .from('article_views')
+        .select('views')
+        .eq('slug', article.slug)
+        .single();
+      if (data) setViews(data.views);
+    };
+
+    if (sessionStorage.getItem(sessionKey)) {
+      fetchViews();
+    } else {
+      incrementAndFetch();
+    }
   }, [article.slug]);
   
 
@@ -125,7 +142,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {views !== null && (
               <>
                 <span className="text-stone-600">·</span>
-                <span className="text-xs text-stone-600">{views} просмотров</span>
+                <span className="text-xs text-stone-600">👁 {views}</span>
               </>
             )}
           </div>
