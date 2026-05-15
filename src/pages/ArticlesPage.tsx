@@ -23,7 +23,7 @@ export default function ArticlesPage() {
         </motion.div>
       </section>
 
-      <div className="h-px bg-stone-200/60" />
+      <div className="h-px bg-stone-300/60" />
 
       <section>
         {articles.map((article, index) => (
@@ -45,12 +45,12 @@ export default function ArticlesPage() {
               className="w-full group cursor-pointer text-left py-8 md:py-12 border-b border-stone-100"
             >
               <div className="flex items-baseline gap-4 md:gap-8">
-                <span className="text-stone-300 text-xl font-mono flex-shrink-0 w-8 md:w-12 group-hover:bg-stone-900 group-hover:text-white transition-all duration-300 text-center">
+                <span className="text-stone-600 text-xl font-mono flex-shrink-0 w-8 md:w-12 group-hover:bg-stone-900 group-hover:text-white transition-all duration-300 text-center">
                   {String(index + 1).padStart(2, '0')}
                 </span>
 
                 <div className="flex-1 min-w-0">
-                  <h2 className="font-serif text-xl md:text-2xl lg:text-[1.75rem] text-stone-900 leading-snug group-hover:text-stone-500 transition-colors duration-500">
+                  <h2 className="font-serif text-xl md:text-2xl lg:text-[1.75rem] text-stone-900 leading-snug group-hover:text-stone-900 transition-colors duration-500">
                     {article.title}
                   </h2>
                   <p className="text-stone-900 text-sm mt-1.5 md:mt-2 leading-relaxed">
@@ -58,11 +58,7 @@ export default function ArticlesPage() {
                   </p>
                 </div>
 
-                <span className="text-stone-300 text-sm font-mono flex-shrink-0 hidden sm:block">
-                  {formatDateShort(article.date)}
-                </span>
-
-                <span className="text-stone-300 group-hover:text-stone-500 group-hover:translate-x-1 transition-all duration-500 flex-shrink-0">
+                <span className="text-stone-600 group-hover:text-stone-900 group-hover:translate-x-1 transition-all duration-500 flex-shrink-0">
                   →
                 </span>
               </div>

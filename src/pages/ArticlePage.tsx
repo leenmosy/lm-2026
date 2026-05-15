@@ -37,7 +37,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
     <div className="pb-16 md:pb-24">
       <div className="fixed left-[max(12px,calc(50vw-750px))] top-1/4 h-1/2 w-0.5 bg-stone-200 z-50 hidden xl:block">
         <div
-          className="w-full bg-stone-400 transition-none origin-top"
+          className="w-full bg-stone-600 transition-none origin-top"
           style={{ height: `${progress * 100}%` }}
         />
       </div>
@@ -51,7 +51,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         >
           <button
             onClick={goBack}
-            className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-stone-700 transition-colors duration-300 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-sm text-stone-600 hover:text-stone-900 transition-colors duration-300 cursor-pointer group"
           >
             <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
               ←
@@ -91,15 +91,15 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           className="mt-10 md:mt-14 max-w-2xl"
         >
           <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs text-stone-400 uppercase tracking-[0.15em] font-medium">
+            <span className="text-xs text-stone-600 uppercase tracking-[0.15em] font-medium">
               {article.category}
             </span>
-            <span className="text-stone-200">·</span>
-            <span className="text-xs text-stone-400">
+            <span className="text-stone-600">·</span>
+            <span className="text-xs text-stone-600">
               {article.readingTime} мин. чтения
             </span>
-            <span className="text-stone-200">·</span>
-            <span className="text-xs text-stone-400">
+            <span className="text-stone-600">·</span>
+            <span className="text-xs text-stone-600">
               {formatDate(article.date)}
             </span>
           </div>
@@ -108,12 +108,12 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {article.title}
           </h1>
 
-          <p className="mt-3 text-stone-600 text-base">
+          <p className="mt-3 text-stone-900 text-base">
             {article.description}
           </p>
         </motion.div>
 
-        <div className="h-px bg-stone-200/60 mt-10 md:mt-14 mb-8 md:mb-10" />
+        <div className="h-px bg-stone-300/60 mt-10 md:mt-14 mb-8 md:mb-10" />
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -139,7 +139,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
-          <p className="text-xs text-stone-400 uppercase tracking-[0.15em] font-medium">
+          <p className="text-xs text-stone-600 uppercase tracking-[0.15em] font-medium">
             Подборка
           </p>
         </motion.div>
@@ -155,7 +155,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           ))}
         </div>
 
-        <div className="h-px bg-stone-200/60 mt-8 md:mt-12 mb-10 md:mb-14" />
+        <div className="h-px bg-stone-300/60 mt-8 md:mt-12 mb-10 md:mb-14" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -182,7 +182,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           </div>
 
           <div className="relative z-10">
-            <p className="text-sm text-stone-400 uppercase tracking-[0.15em] font-medium mb-8">
+            <p className="text-sm text-stone-600 uppercase tracking-[0.15em] font-medium mb-8">
               ✦ Итог
             </p>
             <div className="max-w-2xl relative z-10">
@@ -210,7 +210,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         >
           <button
             onClick={() => navigate('/articles')}
-            className="inline-flex items-center gap-3 text-sm text-stone-900 font-medium tracking-wide hover:gap-4 transition-all duration-300 cursor-pointer group"
+            className="inline-flex items-center gap-3 text-sm font-medium tracking-wide text-stone-600 hover:text-stone-900 transition-colors duration-300 cursor-pointer group"
           >
             <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
               ←

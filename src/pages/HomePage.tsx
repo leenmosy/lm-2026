@@ -44,11 +44,14 @@ export default function HomePage() {
             <path d="M610.106 295.016L610.339 282.418C607.309 285.451 601.948 287.084 590.761 289.184C573.513 292.45 567.919 297.349 567.919 307.148C567.919 315.779 573.047 319.979 582.603 319.979C598.219 319.979 609.873 308.547 610.106 295.016ZM640.64 338.642H612.437C611.505 335.843 610.805 331.877 610.572 328.377C603.347 336.309 591.227 341.675 575.844 341.675C549.739 341.675 537.619 328.844 537.619 310.18C537.619 277.052 559.761 273.32 590.294 269.12C605.445 267.021 609.64 263.988 609.64 256.056C609.64 248.591 602.182 244.158 590.294 244.158C576.543 244.158 570.949 250.923 569.55 261.188H541.348C541.814 237.392 554.866 220.828 591.693 220.828C628.053 220.828 640.64 237.159 640.64 266.088V338.642Z" fill="#282623"/>
             <path d="M684.302 338.642H654.002V181.868H684.302V338.642Z" fill="#282623"/>
           
-            <path d="M5 16.6665C5.56445 16.6665 6.12891 16.6665 49.8825 14.4087C93.6361 12.1509 180.562 7.6353 224.495 5.87353C268.428 4.11175 266.735 5.24066 261.629 7.23334C256.523 9.22603 248.056 12.0483 229.019 16.3244C209.982 20.6006 180.63 26.2451 160.712 30.564C131.036 36.9987 119.618 41.7419 118.181 43.7346C117.654 44.4655 120.696 45.1628 145.283 44.6069C169.871 44.051 216.721 42.3576 240.573 42.332C264.426 42.3063 263.861 43.9997 262.724 45.1542C255.89 48.5837 227.599 59.907 210.563 68.2455" 
-                  stroke="#282623" 
-                  stroke-width="10" 
-                  stroke-linecap="square"
-                  transform="translate(480, 350) scale(1.2)"/>
+            <path 
+              className="draw-line"
+              d="M5 16.6665C5.56445 16.6665 6.12891 16.6665 49.8825 14.4087C93.6361 12.1509 180.562 7.6353 224.495 5.87353C268.428 4.11175 266.735 5.24066 261.629 7.23334C256.523 9.22603 248.056 12.0483 229.019 16.3244C209.982 20.6006 180.63 26.2451 160.712 30.564C131.036 36.9987 119.618 41.7419 118.181 43.7346C117.654 44.4655 120.696 45.1628 145.283 44.6069C169.871 44.051 216.721 42.3576 240.573 42.332C264.426 42.3063 263.861 43.9997 262.724 45.1542C255.89 48.5837 227.599 59.907 210.563 68.2455" 
+              stroke="#282623" 
+              strokeWidth="10" 
+              strokeLinecap="square"
+              transform="translate(480, 350) scale(1.2)"
+            />
 
             <text
               x="115"
@@ -158,7 +161,7 @@ export default function HomePage() {
         </section>
       )}
 
-      <hr className="border-stone-200/60 mb-16 md:mb-20" />
+      <hr className="border-stone-300/60 mb-16 md:mb-20" />
 
       <section className="mb-0">
         <motion.p
@@ -195,7 +198,7 @@ export default function HomePage() {
                   />
                 </picture>
               </div>
-              <span className="text-xs text-stone-400 uppercase tracking-wider font-medium">
+              <span className="text-xs text-stone-600 uppercase tracking-wider font-medium">
                 {article.category}
               </span>
               <h3 className="font-serif text-lg md:text-xl text-stone-900 leading-snug mt-1 group-hover:text-stone-500 transition-colors duration-300">
@@ -205,13 +208,13 @@ export default function HomePage() {
           ))}
         </div>
 
-        <hr className="border-stone-200/60 mt-16 md:mt-20 mb-16 md:mb-20" />
+        <hr className="border-stone-300/60 mt-16 md:mt-20 mb-16 md:mb-20" />
 
         <div className="mt-16 md:mt-20 text-left">
 
           <button
             onClick={() => navigate('/articles')}
-            className="inline-flex items-center gap-3 text-sm font-medium tracking-wide text-stone-500 hover:text-stone-900 transition-colors duration-300 cursor-pointer group"
+            className="inline-flex items-center gap-3 text-sm font-medium tracking-wide text-stone-600 hover:text-stone-900 transition-colors duration-300 cursor-pointer group"
           >
             Читать все статьи
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>

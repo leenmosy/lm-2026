@@ -25,8 +25,8 @@ export default function ReadCursor({ visible }: ReadCursorProps) {
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <div className="w-20 h-20 rounded-full bg-stone-900 flex items-center justify-center">
-        <span className="text-white text-xs tracking-widest uppercase font-medium">
+      <div className="w-10 h-10 rounded-full bg-stone-900 flex items-center justify-center">
+        <span className="text-white text-[7px] tracking-widest uppercase font-medium">
           читать
         </span>
       </div>

@@ -25,7 +25,7 @@ export default function Navigation() {
           <button
             onClick={() => navigate('/')}
             aria-label="На главную"
-            className="text-stone-900 hover:opacity-70 transition-opacity duration-300 cursor-pointer"
+            className="text-stone-900 cursor-pointer"
           >
             <svg width="60" height="42" viewBox="0 0 419 295" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M109 295H0L0 36L78 36L158 236.5L97.5 0L201.5 0L419 295L255 295L170 106L233 295H132L51 113L109 295Z" fill="currentColor"/>
@@ -41,7 +41,7 @@ export default function Navigation() {
                   'text-sm tracking-wide transition-all duration-300 cursor-pointer hover:text-stone-900',
                   currentPath === item.path
                     ? 'text-stone-900 font-medium'
-                    : 'text-stone-400 font-normal'
+                    : 'text-stone-600 font-normal'
                 )}
               >
                 {item.label}

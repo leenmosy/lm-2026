@@ -72,11 +72,11 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
 
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-stone-400 text-lg font-mono font-medium">
+            <span className="text-stone-600 text-lg font-mono font-medium">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <div className="h-px flex-1 bg-stone-200" />
-            <span className="text-stone-500 text-lg font-semibold">
+            <div className="h-px flex-1 bg-stone-300" />
+            <span className="text-stone-600 text-lg font-semibold">
               {product.price}
             </span>
           </div>
@@ -104,7 +104,7 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
             rel="noopener noreferrer"
             className="inline-flex flex-row items-center gap-3 self-start group"
           >
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-stone-900 border-b border-stone-900 pb-0.5 group-hover:text-stone-500 group-hover:border-stone-500 transition-colors duration-300">
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-stone-600 border-b border-stone-600 pb-0.5 group-hover:text-stone-900 group-hover:border-stone-500 transition-colors duration-300">
               Посмотреть на маркетплейсе
               <svg
                 className="w-3.5 h-3.5"
