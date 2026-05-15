@@ -30,18 +30,15 @@
         text-underline-offset: 4px;
       }
       .link:hover { color: #1c1917; }
-      /* Hide fallback UI once JS redirects */
       .js-hidden { display: none !important; }
     </style>
     <script>
       (function () {
         var path = window.location.pathname || '/';
-        // Prevent infinite redirect loop: only redirect once per path
         if (path !== '/' && sessionStorage.getItem('redirect') !== path) {
           sessionStorage.setItem('redirect', path);
           window.location.replace('/');
         } else {
-          // JS loaded but we're staying on 404 — hide redirect notice, show fallback UI
           document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('redirecting')?.classList.add('js-hidden');
             document.getElementById('fallback')?.classList.remove('js-hidden');
@@ -51,20 +48,17 @@
     </script>
   </head>
   <body>
-    <!-- Shown while JS is redirecting -->
     <div id="redirecting">
       <p class="code">404</p>
       <p class="message">Перенаправляем на главную…</p>
     </div>
 
-    <!-- Fallback: shown if JS loaded but redirect didn't fire (loop guard) -->
     <div id="fallback" class="js-hidden">
       <p class="code">404</p>
       <p class="message">Страница не найдена</p>
       <a class="link" href="/">Вернуться на главную</a>
     </div>
 
-    <!-- No-JS fallback -->
     <noscript>
       <style>#redirecting { display: none !important; } #fallback { display: block !important; }</style>
     </noscript>
