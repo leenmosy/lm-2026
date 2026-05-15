@@ -90,7 +90,7 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
           </p>
 
           <div className="border-l-2 border-stone-300 pl-5 mb-6">
-            <p className="text-xs text-stone-900 uppercase tracking-wider mb-2 font-medium">
+            <p className="text-sm text-stone-900 uppercase tracking-wider mb-2 font-medium">
               ✦ Почему это меняет пространство
             </p>
             <p className="text-stone-900 text-sm leading-relaxed">
