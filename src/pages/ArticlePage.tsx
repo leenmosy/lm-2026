@@ -142,7 +142,13 @@ export default function ArticlePage({ article }: ArticlePageProps) {
             {views !== null && (
               <>
                 <span className="text-stone-600">·</span>
-                <span className="text-xs text-stone-600">{views} 👁</span>
+                <span className="text-xs text-stone-600 flex items-center gap-1">
+                  {views}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </span>
               </>
             )}
           </div>
