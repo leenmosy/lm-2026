@@ -7,7 +7,6 @@ import ArticlesPage from './pages/ArticlesPage';
 import ArticlePage from './pages/ArticlePage';
 import { getArticleBySlug } from './lib/articles';
 
-// Fix 4: читаем флаг из history.state вместо мутабельной глобальной переменной
 function isInternalNav(): boolean {
   return window.history.state?._internal === true;
 }
@@ -127,7 +126,6 @@ function PageTransition({
   );
 }
 
-// Fix 5: updatePageMeta и injectJsonLd вынесены в useEffect — не в render-фазе
 function usePageMeta(path: string) {
   useEffect(() => {
     const slug = path.startsWith('/articles/') ? path.replace('/articles/', '') : null;

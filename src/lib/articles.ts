@@ -64,7 +64,6 @@ export function getPopularArticles(): Article[] {
   return articles.filter((a) => a.popular);
 }
 
-// Fix 1: считаем все текстовые поля, включая тексты продуктов
 function calcReadingTime(a: Article): number {
   const productText = a.products
     .map((p) => `${p.description} ${p.why}`)

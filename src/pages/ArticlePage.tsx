@@ -20,7 +20,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Fix 3: localStorage сохраняется между вкладками и сессиями
     const storageKey = `viewed_${article.slug}`;
 
     const fetchViews = async () => {
