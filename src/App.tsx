@@ -7,7 +7,10 @@ import ArticlesPage from './pages/ArticlesPage';
 import ArticlePage from './pages/ArticlePage';
 import { getArticleBySlug } from './lib/articles';
 
-let _navigatedInternally = false;
+// Fix 4: читаем флаг из history.state вместо мутабельной глобальной переменной
+function isInternalNav(): boolean {
+  return window.history.state?._internal === true;
+}
 
 function useRouter() {
   const [path, setPath] = useState(
@@ -18,7 +21,6 @@ function useRouter() {
 
   useEffect(() => {
     const handlePopState = () => {
-      _navigatedInternally = window.history.state?._internal === true;
       setPath(window.location.pathname);
       window.scrollTo({ top: 0 });
     };
@@ -31,7 +33,6 @@ function useRouter() {
 }
 
 export function navigate(path: string, scrollTop = true) {
-  _navigatedInternally = true;
   window.history.pushState({ _internal: true }, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
   if (scrollTop) {
@@ -40,7 +41,7 @@ export function navigate(path: string, scrollTop = true) {
 }
 
 export function goBack() {
-  if (_navigatedInternally) {
+  if (isInternalNav()) {
     window.history.back();
   } else {
     navigate('/');
@@ -59,7 +60,7 @@ export function updatePageMeta(opts: {
   const url = opts.url ? `${base}${opts.url}` : `${base}/`;
   const image = opts.image ? `${base}${opts.image}` : `${base}/images/MosychJournal.jpg`;
   const hreflang = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="ru"]');
-    if (hreflang) hreflang.href = url;
+  if (hreflang) hreflang.href = url;
 
   document.title = title;
   setMeta('name', 'description', description);
@@ -126,26 +127,56 @@ function PageTransition({
   );
 }
 
+// Fix 5: updatePageMeta и injectJsonLd вынесены в useEffect — не в render-фазе
+function usePageMeta(path: string) {
+  useEffect(() => {
+    const slug = path.startsWith('/articles/') ? path.replace('/articles/', '') : null;
+
+    if (path === '/' || path === '') {
+      updatePageMeta({});
+      injectWebSiteJsonLd();
+    } else if (path === '/articles') {
+      updatePageMeta({
+        title: 'Статьи - Mosych Journal',
+        description: 'Кураторский список статей о доме, интерьере и вещах, которые меняют пространство.',
+        url: '/articles',
+        image: '/images/MosychJournal.webp',
+      });
+    } else if (slug) {
+      const article = getArticleBySlug(slug);
+      if (article) {
+        updatePageMeta({
+          title: `${article.title} - Mosych Journal`,
+          description: article.description,
+          url: `/articles/${article.slug}`,
+          image: article.coverImage,
+        });
+        injectArticleJsonLd({
+          title: article.title,
+          description: article.description,
+          slug: article.slug,
+          coverImage: article.coverImage,
+          date: article.date,
+          readingTime: article.readingTime,
+        });
+      }
+    }
+  }, [path]);
+}
+
 function App() {
   const path = useRouter();
+  usePageMeta(path);
 
   let content: ReactNode;
 
   if (path === '/' || path === '') {
-    updatePageMeta({});
-    injectWebSiteJsonLd();
     content = (
       <PageTransition pageKey="home">
         <HomePage />
       </PageTransition>
     );
   } else if (path === '/articles') {
-    updatePageMeta({
-      title: 'Статьи - Mosych Journal',
-      description: 'Кураторский список статей о доме, интерьере и вещах, которые меняют пространство.',
-      url: '/articles',
-      image: '/images/MosychJournal.webp'
-    });
     content = (
       <PageTransition pageKey="articles">
         <ArticlesPage />
@@ -155,20 +186,6 @@ function App() {
     const slug = path.replace('/articles/', '');
     const article = getArticleBySlug(slug);
     if (article) {
-      updatePageMeta({
-        title: `${article.title} - Mosych Journal`,
-        description: article.description,
-        url: `/articles/${article.slug}`,
-        image: article.coverImage,
-      });
-      injectArticleJsonLd({
-        title: article.title,
-        description: article.description,
-        slug: article.slug,
-        coverImage: article.coverImage,
-        date: article.date,
-        readingTime: article.readingTime,
-      });
       content = (
         <PageTransition pageKey={`article-${slug}`}>
           <ArticlePage article={article} />

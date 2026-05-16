@@ -8,6 +8,7 @@ interface ProductBlockProps {
   isLast: boolean;
 }
 
+
 export default function ProductBlock({ product, index, isLast }: ProductBlockProps) {
   const isEven = index % 2 === 0;
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -43,30 +44,24 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
         } gap-8 md:gap-14 items-start`}
       >
         <div className="w-full md:w-1/2 flex-shrink-0">
-          <div 
+          <div
             className="aspect-[4/3] rounded-sm overflow-hidden bg-stone-100"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <picture>
-              <source
-                srcSet={product.image.endsWith('.webp') ? product.image : product.image.replace(/\.[^.]+$/, '.webp')}
-                type="image/webp"
-              />
-              <img
-                src={product.image.replace(/\.webp$/, '.jpg')}
-                alt={product.title}
-                width={580}
-                height={435}
-                className="w-full h-full object-cover"
-                style={{
-                  transform: `translate(${position.x * 8}px, ${position.y * 8}px) scale(1.08)`,
-                  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                  willChange: 'transform',
-                }}
-                loading="lazy"
-              />
-            </picture>
+            <img
+              src={product.image}
+              alt={product.title}
+              width={580}
+              height={435}
+              className="w-full h-full object-cover"
+              style={{
+                transform: `translate(${position.x * 8}px, ${position.y * 8}px) scale(1.08)`,
+                transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                willChange: 'transform',
+              }}
+              loading="lazy"
+            />
           </div>
         </div>
 
@@ -126,7 +121,6 @@ export default function ProductBlock({ product, index, isLast }: ProductBlockPro
           </a>
         </div>
       </div>
-
     </motion.div>
   );
 }

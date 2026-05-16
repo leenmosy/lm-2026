@@ -64,12 +64,17 @@ export function getPopularArticles(): Article[] {
   return articles.filter((a) => a.popular);
 }
 
-function calcReadingTime(text: string): number {
-  const words = text.trim().split(/\s+/).length;
+// Fix 1: считаем все текстовые поля, включая тексты продуктов
+function calcReadingTime(a: Article): number {
+  const productText = a.products
+    .map((p) => `${p.description} ${p.why}`)
+    .join(' ');
+  const fullText = [a.intro, a.conclusion, productText].join(' ');
+  const words = fullText.trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 200));
 }
 
-const articles: Article[] = Object.values(modules).map(a => ({
+const articles: Article[] = Object.values(modules).map((a) => ({
   ...a,
-  readingTime: calcReadingTime(a.intro + ' ' + a.conclusion),
+  readingTime: calcReadingTime(a),
 }));

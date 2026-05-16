@@ -20,9 +20,11 @@ export default function ArticlePage({ article }: ArticlePageProps) {
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const sessionKey = `viewed_${article.slug}`;
+    // Fix 3: localStorage сохраняется между вкладками и сессиями
+    const storageKey = `viewed_${article.slug}`;
 
     const fetchViews = async () => {
+      if (!supabase) return;
       const { data, error } = await supabase
         .from('article_views')
         .select('views')
@@ -36,12 +38,13 @@ export default function ArticlePage({ article }: ArticlePageProps) {
     };
 
     const incrementAndFetch = async () => {
+      if (!supabase) return;
       const { error: rpcError } = await supabase.rpc('increment_views', { article_slug: article.slug });
       if (rpcError) {
         console.error('Supabase increment_views:', rpcError.message);
         return;
       }
-      sessionStorage.setItem(sessionKey, '1');
+      localStorage.setItem(storageKey, '1');
       const { data, error } = await supabase
         .from('article_views')
         .select('views')
@@ -54,13 +57,13 @@ export default function ArticlePage({ article }: ArticlePageProps) {
       if (data) setViews(data.views);
     };
 
-    if (sessionStorage.getItem(sessionKey)) {
+    if (localStorage.getItem(storageKey)) {
       fetchViews();
     } else {
       incrementAndFetch();
     }
   }, [article.slug]);
-  
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -249,7 +252,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
               </p>
             ))}
           </div>
-        </motion.div>   
+        </motion.div>
 
         {related.length > 0 && (
           <motion.div

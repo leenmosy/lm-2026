@@ -15,6 +15,7 @@ export default function HomePage() {
   useEffect(() => {
     if (!featured) return;
     const fetchViews = async () => {
+      if (!supabase) return;
       const { data, error } = await supabase
         .from('article_views')
         .select('views')
