@@ -287,7 +287,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                   <span className="text-xs text-stone-500 uppercase tracking-wider font-medium">
                     {a.category}
                   </span>
-                  <h3 className="font-serif text-lg md:text-xl text-stone-900 leading-snug mt-1 group-hover:text-stone-600 transition-colors duration-300">
+                  <h3 className="font-serif text-lg md:text-xl text-stone-900 leading-snug mt-1 group-hover:text-stone-700 transition-colors duration-300">
                     {a.title}
                   </h3>
                 </div>
