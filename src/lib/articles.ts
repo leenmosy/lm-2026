@@ -28,6 +28,20 @@ export interface Article {
 
 const modules = import.meta.glob<Article>('../content/*.json', { eager: true });
 
+function calcReadingTime(a: Article): number {
+  const productText = a.products
+    .map((p) => `${p.description} ${p.why}`)
+    .join(' ');
+  const fullText = [a.intro, a.conclusion, productText].join(' ');
+  const words = fullText.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+const articles: Article[] = Object.values(modules).map((a) => ({
+  ...a,
+  readingTime: calcReadingTime(a),
+}));
+
 export function getAllArticles(): Article[] {
   return [...articles].sort((a, b) => a.order - b.order);
 }
@@ -63,17 +77,3 @@ export function formatDateShort(dateString: string): string {
 export function getPopularArticles(): Article[] {
   return articles.filter((a) => a.popular);
 }
-
-function calcReadingTime(a: Article): number {
-  const productText = a.products
-    .map((p) => `${p.description} ${p.why}`)
-    .join(' ');
-  const fullText = [a.intro, a.conclusion, productText].join(' ');
-  const words = fullText.trim().split(/\s+/).length;
-  return Math.max(1, Math.round(words / 200));
-}
-
-const articles: Article[] = Object.values(modules).map((a) => ({
-  ...a,
-  readingTime: calcReadingTime(a),
-}));

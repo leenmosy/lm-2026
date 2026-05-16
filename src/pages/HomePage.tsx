@@ -158,17 +158,17 @@ export default function HomePage() {
                 <span className="text-stone-600 text-xs">
                   {featured.readingTime} мин. чтения
                 </span>
-                {featuredViews !== null && (
-                  <>
-                    <span className="text-stone-600">·</span>
-                    <span className="text-stone-600 text-xs flex items-center gap-1">
-                      {featuredViews}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                      </svg>
-                    </span>
-                  </>
+                <span className="text-stone-600">·</span>
+                {featuredViews !== null ? (
+                  <span className="text-stone-600 text-xs flex items-center gap-1">
+                    {featuredViews}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </span>
+                ) : (
+                  <span className="w-8 h-3 bg-stone-200 rounded animate-pulse inline-block" />
                 )}
               </div>
 
@@ -222,6 +222,8 @@ export default function HomePage() {
                   <img
                     src={article.coverImage}
                     alt={article.title}
+                    width={400}
+                    height={300}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     loading="lazy"
                   />

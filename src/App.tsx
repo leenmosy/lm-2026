@@ -52,6 +52,8 @@ export function updatePageMeta(opts: {
   description?: string;
   url?: string;
   image?: string;
+  imageWidth?: string;
+  imageHeight?: string;
 }) {
   const base = 'https://mosych.top';
   const title = opts.title ?? 'Mosych Journal';
@@ -67,6 +69,8 @@ export function updatePageMeta(opts: {
   setMeta('property', 'og:description', description);
   setMeta('property', 'og:url', url);
   setMeta('property', 'og:image', image);
+  setMeta('property', 'og:image:width', opts.imageWidth ?? '1200');
+  setMeta('property', 'og:image:height', opts.imageHeight ?? '630');
   setMeta('name', 'twitter:title', title);
   setMeta('name', 'twitter:description', description);
   setMeta('name', 'twitter:image', image);
@@ -148,6 +152,8 @@ function usePageMeta(path: string) {
           description: article.description,
           url: `/articles/${article.slug}`,
           image: article.coverImage,
+          imageWidth: '1160',
+          imageHeight: '508',
         });
         injectArticleJsonLd({
           title: article.title,

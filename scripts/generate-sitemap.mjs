@@ -26,8 +26,8 @@ function urlEntry({ path, lastmod, priority = '0.9', changefreq = 'monthly' }) {
 }
 
 const staticPages = [
-  { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/articles', priority: '0.8', changefreq: 'weekly' },
+  { path: '/', priority: '1.0', changefreq: 'weekly', lastmod: new Date().toISOString().split('T')[0] },
+  { path: '/articles', priority: '0.8', changefreq: 'weekly', lastmod: new Date().toISOString().split('T')[0] },
 ];
 
 const xml = [
