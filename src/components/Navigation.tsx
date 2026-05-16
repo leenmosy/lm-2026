@@ -168,7 +168,7 @@ export default function Navigation() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKey}
-                  placeholder="Поиск..."
+                  placeholder="Поиск"
                   className={cn(inputClass, 'w-48 xl:w-64')}
                 />
                 <SearchIcon />
@@ -181,7 +181,7 @@ export default function Navigation() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKey}
-                  placeholder="Поиск..."
+                  placeholder="Поиск"
                   className={cn(inputClass, 'w-32')}
                 />
                 <SearchIcon />
@@ -217,7 +217,7 @@ export default function Navigation() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Поиск по статьям..."
+              placeholder="Поиск"
               className="w-full bg-stone-100 text-stone-900 placeholder-stone-400 text-sm rounded-sm px-3 py-2 pr-8 outline-none focus:bg-stone-200 transition-colors duration-200"
             />
             <SearchIcon />
