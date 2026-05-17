@@ -273,9 +273,9 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                 >
                   <div className="aspect-[4/3] rounded-sm overflow-hidden bg-stone-100 mb-4">
                     <picture>
-                      <source srcSet={a.coverImage.replace(/\.jpg$/, '.webp')} type="image/webp" />
+                      <source srcSet={(a.thumbnailImage ?? a.coverImage).replace(/\.jpg$/, '.webp')} type="image/webp" />
                       <img
-                        src={a.coverImage}
+                        src={a.thumbnailImage ?? a.coverImage}
                         alt={a.title}
                         width={400}
                         height={300}
